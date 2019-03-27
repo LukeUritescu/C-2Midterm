@@ -15,6 +15,9 @@ public:
 	void getLastTransaction(); //returns the back of the transactionhistory vector to get the latest one
 	void printEveryTransaction(); //will print out all transaction for the specified account
 
+	std::string getName();
+	void setName(std::string Name);
+
 	void makeWithdraw(double amountToDeposit);
 	void makeDeposit(double amountToDeposit);
 	void makeTransfer(Account withDrawFrom, Account depositTo);
@@ -28,6 +31,8 @@ protected:
 	double balance;
 	std::unique_ptr<MathForAccounts> doMath = std::make_unique<MathForAccounts>();
 	std::vector<double> transactionHistory;
+
+	std::string name;
 };
 
 //The transaction history should be a vector on the heap!2!!!!!

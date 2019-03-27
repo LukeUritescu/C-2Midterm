@@ -14,10 +14,16 @@ public:
 	std::string getAddress();
 	int getUniqueIdentifier();
 
-	double getWithdraw(double amountToWithdraw);
-	double getDeposit(double amountToDeposit);
+	double getWithdraw(double amountToWithdraw, int accountNumber);
+	double getDeposit(double amountToDeposit, int accountNumber);
 
-	void createAnAccount(double startingBalance);
+
+	void completeATransfer(double amountToTransfer, int accountNumberThatTransfers, int accountNummberThatReceives);
+
+	void printLastTransaction(int accountNumber);
+	void printAllTransactions(int accountNumber);
+
+	void createAnAccount(double startingBalance, std::string nameForAccount, std::string accountName);
 	
 	UserProfile();
 	~UserProfile();
@@ -26,8 +32,6 @@ public:
 
 protected:
 	std::vector<std::shared_ptr<Account>> accounts;
-	std::shared_ptr<Account> accountA = std::make_shared<Account>(100);
-	std::shared_ptr<Account> accountB = std::make_shared<Account>(50);
 	std::string name;
 	std::string address;
 	int uniqueIdentifier;

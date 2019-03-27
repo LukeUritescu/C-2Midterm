@@ -7,25 +7,24 @@ double MathForAccounts::withDraw(double amountToWithdrawFrom, double currentBala
 	double ten = 10;
 	double five = 5;
 
-	double newBalance = 0;
 	while (amountToWithdrawFrom > 0) {
-		if ((currentBalance - twenty) >= 0) {
-			newBalance = currentBalance - twenty;
+		if ((amountToWithdrawFrom - twenty) >= 0) {
+			currentBalance = currentBalance - twenty;
 			amountToWithdrawFrom = amountToWithdrawFrom - twenty;
 		}
-		else if ((currentBalance - ten) >= 0) {
-			newBalance = currentBalance - ten;
+		else if ((amountToWithdrawFrom - ten) >= 0) {
+			currentBalance = currentBalance - ten;
 			amountToWithdrawFrom = amountToWithdrawFrom - ten;
 		}
-		else if ((currentBalance - five) >= 0) {
-			newBalance = currentBalance - five;
+		else if ((amountToWithdrawFrom - five) >= 0) {
+			currentBalance = currentBalance - five;
 			amountToWithdrawFrom = amountToWithdrawFrom - five;
 		}
 		else {
 			amountToWithdrawFrom = 0;
 		}
 	}
-	return newBalance;
+	return currentBalance;
 }
 
 double MathForAccounts::deposit(double amountToDeposit, double currentBalance)

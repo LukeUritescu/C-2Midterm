@@ -13,34 +13,70 @@ int UserProfile::getUniqueIdentifier() {
 	return uniqueIdentifier;
 }
 
-double UserProfile::getWithdraw(double amountToWithdraw)
+double UserProfile::getWithdraw(double amountToWithdraw, int accountNumber)
 {
-	for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
-	{
-		(*it)->makeWithdraw(amountToWithdraw);
-		std::cout << (*it)->getBalance() << std::endl;
-	}
+	//for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
+	//{
+	//	(*it)->makeWithdraw(amountToWithdraw);
+	//	std::cout << (*it)->getBalance() << std::endl;
+	//}
+	accounts[accountNumber - 1]->makeWithdraw(amountToWithdraw);
 
-	return 0;
+	return accounts[accountNumber - 1]->getBalance();
 }
 
-double UserProfile::getDeposit(double amountToDeposit)
+double UserProfile::getDeposit(double amountToDeposit, int accountNumber)
 {
-	for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
-	{
-		(*it)->makeDeposit(amountToDeposit);
-		std::cout << (*it)->getBalance() << std::endl;
-	}
-	return 0;
+	//for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
+	//{
+	//	(*it)->makeDeposit(amountToDeposit);
+	//	std::cout << (*it)->getBalance() << std::endl;
+	//}
+	accounts[accountNumber - 1]->makeDeposit(amountToDeposit);
+
+	return accounts[accountNumber - 1]->getBalance();
 }
 
-void UserProfile::createAnAccount(double startingBalance)
+void UserProfile::completeATransfer(double amountToTransfer, int accountNumberThatTransfers, int accountNummberThatReceives)
 {
-	bool okayToMakeNewAccount = true;
-	std::shared_ptr<Account> accountA = std::make_shared<Account>(100);
-	accounts.push_back(accountA);
-	std::cout << accountA->getBalance() << std::endl;
+	if (accounts.size() > 1) {
+			accounts[accountNummberThatReceives - 1]->makeDeposit(amountToTransfer);
+			accounts[accountNumberThatTransfers - 1]->makeWithdraw(amountToTransfer);
+			std::cout << accounts[accountNummberThatReceives - 1]->getBalance() << std::endl;
+			std::cout << accounts[accountNumberThatTransfers - 1]->getBalance() << std::endl;
+		
+	}
+	else {
+		std::cout << "There is only one valid account" << std::endl;
+	}
+}
 
+void UserProfile::createAnAccount(double startingBalance, std::string nameForAccount, std::string accountName)
+{
+	bool validToCreateNewAccount = true;
+       for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
+		{
+			if ((*it)->getBalance() < 25) {
+	     		validToCreateNewAccount = false;
+				std::cout << (*it)->getName() << " needs to be at $25 and is at: " << (*it)->getBalance();
+			}
+		}
+
+	   if (validToCreateNewAccount) {
+		   std::shared_ptr<Account> nameForAccount = std::make_shared<Account>(100);
+		   accounts.push_back(nameForAccount);
+		   accounts.back()->setName(accountName);
+	   }
+}
+
+void UserProfile::printLastTransaction(int accountNumber)
+{
+	accounts[accountNumber - 1]->getLastTransaction();
+}
+
+void UserProfile::printAllTransactions(int accountNumber)
+{
+	accounts[accountNumber - 1]->printEveryTransaction();
 }
 
 UserProfile::UserProfile()
