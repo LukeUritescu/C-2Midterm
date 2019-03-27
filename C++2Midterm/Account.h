@@ -18,7 +18,7 @@ public:
 	std::string getName();
 	void setName(std::string Name);
 
-	void makeWithdraw(double amountToDeposit);
+	void makeWithdraw(double amountToWithdraw);
 	void makeDeposit(double amountToDeposit);
 	void makeTransfer(Account withDrawFrom, Account depositTo);
 

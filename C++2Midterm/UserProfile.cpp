@@ -42,8 +42,8 @@ void UserProfile::completeATransfer(double amountToTransfer, int accountNumberTh
 	if (accounts.size() > 1) {
 			accounts[accountNummberThatReceives - 1]->makeDeposit(amountToTransfer);
 			accounts[accountNumberThatTransfers - 1]->makeWithdraw(amountToTransfer);
-			std::cout << accounts[accountNummberThatReceives - 1]->getBalance() << std::endl;
-			std::cout << accounts[accountNumberThatTransfers - 1]->getBalance() << std::endl;
+			std::cout << accounts[accountNummberThatReceives -1]->getName() << " balance: " << accounts[accountNummberThatReceives - 1]->getBalance() << std::endl;
+			std::cout << accounts[accountNumberThatTransfers -1]->getName() << " balance: " << accounts[accountNumberThatTransfers - 1]->getBalance() << std::endl;
 		
 	}
 	else {
@@ -95,7 +95,6 @@ UserProfile::UserProfile(std::string Name, std::string Address, int UniqueIdetif
 
 UserProfile::~UserProfile()
 {
-	std::cout << "please work" << std::endl;
 }
 
 void UserProfile::deleteVector()

@@ -6,22 +6,27 @@ double MathForAccounts::withDraw(double amountToWithdrawFrom, double currentBala
 	double twenty = 20;
 	double ten = 10;
 	double five = 5;
-
-	while (amountToWithdrawFrom > 0) {
-		if ((amountToWithdrawFrom - twenty) >= 0) {
-			currentBalance = currentBalance - twenty;
-			amountToWithdrawFrom = amountToWithdrawFrom - twenty;
-		}
-		else if ((amountToWithdrawFrom - ten) >= 0) {
-			currentBalance = currentBalance - ten;
-			amountToWithdrawFrom = amountToWithdrawFrom - ten;
-		}
-		else if ((amountToWithdrawFrom - five) >= 0) {
-			currentBalance = currentBalance - five;
-			amountToWithdrawFrom = amountToWithdrawFrom - five;
-		}
-		else {
-			amountToWithdrawFrom = 0;
+	if ((currentBalance - amountToWithdrawFrom) < 0)
+	{
+		std::cout << "This withdrawal is too large for this account's current balance of: " << currentBalance << std::endl;
+	}
+	else{
+		while (amountToWithdrawFrom > 0) {
+			if ((amountToWithdrawFrom - twenty) >= 0) {
+				currentBalance = currentBalance - twenty;
+				amountToWithdrawFrom = amountToWithdrawFrom - twenty;
+			}
+			else if ((amountToWithdrawFrom - ten) >= 0) {
+				currentBalance = currentBalance - ten;
+				amountToWithdrawFrom = amountToWithdrawFrom - ten;
+			}
+			else if ((amountToWithdrawFrom - five) >= 0) {
+				currentBalance = currentBalance - five;
+				amountToWithdrawFrom = amountToWithdrawFrom - five;
+			}
+			else {
+				amountToWithdrawFrom = 0;
+			}
 		}
 	}
 	return currentBalance;

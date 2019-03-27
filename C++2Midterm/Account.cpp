@@ -19,7 +19,8 @@ void Account::setName(std::string Name)
 
 void Account::getLastTransaction()
 {
-	std::cout << transactionHistory.back() << std::endl;
+	std::cout << "Transaction: " << std::endl;
+	std::cout << "$" << transactionHistory.back() << std::endl;
 }
 
 
@@ -27,16 +28,21 @@ void Account::printEveryTransaction()
 {
 	for (std::vector<double>::iterator it = transactionHistory.begin(); it != transactionHistory.end(); ++it)
 	{
-		std::cout << *it << std::endl;
+		std::cout << "$" << *it << std::endl;
 	}
 }
 
 
-void Account::makeWithdraw(double amountToDeposit)
+void Account::makeWithdraw(double amountToWithdraw)
 {
-	balance = doMath->withDraw(amountToDeposit, getBalance());
-	transactionHistory.push_back(0 - amountToDeposit);
-
+	double newBalance = 0;
+	newBalance = doMath->withDraw(amountToWithdraw, getBalance());
+	if (newBalance == getBalance()) {
+		std::cout << "No transaction happened" << std::endl;
+	}
+	else {
+		transactionHistory.push_back(0 - amountToWithdraw);
+	}
 }
 
 void Account::makeDeposit(double amountToDeposit)
