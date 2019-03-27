@@ -15,12 +15,22 @@ int UserProfile::getUniqueIdentifier() {
 
 double UserProfile::getWithdraw(double amountToWithdraw)
 {
+	for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
+	{
+		(*it)->makeWithdraw(amountToWithdraw);
+		std::cout << (*it)->getBalance() << std::endl;
+	}
+
 	return 0;
 }
 
 double UserProfile::getDeposit(double amountToDeposit)
 {
-	
+	for (std::vector<std::shared_ptr<Account>>::iterator it = accounts.begin(); it != accounts.end(); ++it)
+	{
+		(*it)->makeDeposit(amountToDeposit);
+		std::cout << (*it)->getBalance() << std::endl;
+	}
 	return 0;
 }
 
@@ -28,7 +38,7 @@ void UserProfile::createAnAccount(double startingBalance)
 {
 	bool okayToMakeNewAccount = true;
 	std::shared_ptr<Account> accountA = std::make_shared<Account>(100);
-	accounts->push_back(accountA);
+	accounts.push_back(accountA);
 	std::cout << accountA->getBalance() << std::endl;
 
 }

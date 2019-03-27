@@ -13,6 +13,7 @@ int main()
 	std::cout << "Address: " << user1->getAddress() << std::endl;
 	std::cout << "Identifier: " << user1->getUniqueIdentifier() << std::endl;
 	user1->createAnAccount(100);
+	user1->getDeposit(50);
 
 	user1->deleteVector();
 	return 0;

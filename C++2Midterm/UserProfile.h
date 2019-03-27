@@ -25,7 +25,9 @@ public:
 	void deleteVector();
 
 protected:
-	std::vector<std::shared_ptr<Account>>* accounts;
+	std::vector<std::shared_ptr<Account>> accounts;
+	std::shared_ptr<Account> accountA = std::make_shared<Account>(100);
+	std::shared_ptr<Account> accountB = std::make_shared<Account>(50);
 	std::string name;
 	std::string address;
 	int uniqueIdentifier;

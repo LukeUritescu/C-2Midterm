@@ -23,12 +23,13 @@ void Account::printEveryTransaction()
 
 void Account::makeWithdraw(double amountToDeposit)
 {
-	double newBalance = doMath->withDraw(amountToDeposit, balance);
+	balance = doMath->withDraw(amountToDeposit, getBalance());
 }
 
 void Account::makeDeposit(double amountToDeposit)
 {
-	double newBalance = doMath->deposit(amountToDeposit, balance);
+	balance = doMath->deposit(amountToDeposit, getBalance());
+	
 	
 }
 
