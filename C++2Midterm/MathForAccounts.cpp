@@ -38,20 +38,11 @@ double MathForAccounts::deposit(double amountToDeposit, double currentBalance)
 	return newBalance;
 }
 
-void MathForAccounts::transfer(double givingBalance, double receivingBalance, double amountToTransfer)
-{
-
-}
 
 double MathForAccounts::updateBalance(double newBalance)
 {
 	return newBalance;
 }
-
-//double MathForAccounts::updateTransaction(double currentBalance, double newBalance)
-//{
-//
-//}
 
 MathForAccounts::MathForAccounts()
 {
